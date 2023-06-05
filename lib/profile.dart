@@ -1,6 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:quiz_app/about.dart';
+import 'package:quiz_app/complain.dart';
+import 'package:quiz_app/contact.dart';
+import 'package:quiz_app/developer.dart';
+import 'package:quiz_app/feedback.dart';
+import 'package:quiz_app/help.dart';
+import 'package:quiz_app/terms.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quiz_app/api/api.dart';
 import 'package:quiz_app/edit_profile.dart';
@@ -134,369 +141,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           borderRadius: BorderRadius.circular(15),
                           color: Colors.blueAccent,
                           image: const DecorationImage(
-                              image: AssetImage("assets/userx.jpg"),
+                              image: AssetImage("assets/dev.png"),
                               fit: BoxFit.cover)),
                     ),
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 50.0,
-                ),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(vertical: 25),
-                  height: 45,
-                  width: double.maxFinite,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: Theme.of(context).primaryColor,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20))),
-                    onPressed: () {
-                      // Navigator.pop(context);
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(
+              //     horizontal: 50.0,
+              //   ),
+              //   child: Container(
+              //     margin: const EdgeInsets.symmetric(vertical: 25),
+              //     height: 45,
+              //     width: double.maxFinite,
+              //     child: ElevatedButton(
+              //       style: ElevatedButton.styleFrom(
+              //           elevation: 0,
+              //           backgroundColor: Theme.of(context).primaryColor,
+              //           shape: RoundedRectangleBorder(
+              //               borderRadius: BorderRadius.circular(20))),
+              //       onPressed: () {
+              //         // Navigator.pop(context);
 
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const EditProfileScreen()));
-                    },
-                    child: const Text('Update Profile'),
-                  ),
-                ),
-              ),
-              const Text(
-                'Personal Information',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Fullname',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          userData == null ?
-                          Text(
-                            '',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          )
-                          :
-                          Text(
-                            userData['first_name'].toString() +
-                                ' ' +
-                                userData['last_name'].toString(),
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Email',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          userData == null ?
-                          Text(
-                            '',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          )
-                          :
-                          Text(
-                            userData['email'].toString(),
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Gender',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-
-                          profile_data == null ?
-                          Text(
-                            '',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          )
-                          :
-                          Text(
-                            profile_data!['gender'].toString(),
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Phone Nmuber',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          profile_data == null ?
-                          Text(
-                            '',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          )
-                          :
-                          Text(
-                            profile_data!['phone'].toString(),
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                    ],
-                  ),
-                ),
-              ),
-              const Text(
-                'Proffesional Qualification',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'O-Level Index No',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          profile_data == null ?
-                          Text(
-                            '',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          )
-                          :
-                          Text(
-                            profile_data!['o_level_index'].toString(),
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Education',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          profile_data == null ?
-                          Text(
-                            '',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          )
-                          :
-                          Text(
-                            profile_data!['education_level'].toString(),
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Program',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          profile_data == null ?
-                          Text(
-                            '',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          )
-                          :
-                          Text(
-                            profile_data!['program'].toString(),
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Country',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          profile_data == null ?
-                          Text(
-                            '',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          )
-                          :
-                          Text(
-                            profile_data!['country'].toString(),
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                    ],
-                  ),
-                ),
-              ),
+              //         Navigator.push(
+              //             context,
+              //             MaterialPageRoute(
+              //                 builder: (context) => const EditProfileScreen()));
+              //       },
+              //       child: const Text('Update Profile'),
+              //     ),
+              //   ),
+              // ),
               // const Text(
-              //   'Language Preferences',
+              //   'Personal Information',
               //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               // ),
               // Padding(
@@ -507,7 +185,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               //       color: Colors.white,
               //       borderRadius: BorderRadius.circular(30),
               //     ),
-              //     child: const Column(
+              //     child: Column(
               //       crossAxisAlignment: CrossAxisAlignment.start,
               //       children: [
               //         Row(
@@ -524,8 +202,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
               //             SizedBox(
               //               width: 10,
               //             ),
+              //             userData == null ?
               //             Text(
-              //               'Firstname Lastname',
+              //               '',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             )
+              //             :
+              //             Text(
+              //               userData['first_name'].toString() +
+              //                   ' ' +
+              //                   userData['last_name'].toString(),
               //               style: TextStyle(
               //                   fontSize: 16,
               //                   color: Colors.grey,
@@ -551,8 +241,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               //             SizedBox(
               //               width: 10,
               //             ),
+              //             userData == null ?
               //             Text(
-              //               'email@example.com',
+              //               '',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             )
+              //             :
+              //             Text(
+              //               userData['email'].toString(),
               //               style: TextStyle(
               //                   fontSize: 16,
               //                   color: Colors.grey,
@@ -578,8 +278,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
               //             SizedBox(
               //               width: 10,
               //             ),
+
+              //             profile_data == null ?
               //             Text(
-              //               'Male',
+              //               '',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             )
+              //             :
+              //             Text(
+              //               profile_data!['gender'].toString(),
               //               style: TextStyle(
               //                   fontSize: 16,
               //                   color: Colors.grey,
@@ -603,8 +314,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               //             SizedBox(
               //               width: 10,
               //             ),
+              //             profile_data == null ?
               //             Text(
-              //               '+255786985783',
+              //               '',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             )
+              //             :
+              //             Text(
+              //               profile_data!['phone'].toString(),
               //               style: TextStyle(
               //                   fontSize: 16,
               //                   color: Colors.grey,
@@ -618,243 +339,625 @@ class _ProfileScreenState extends State<ProfileScreen> {
               //     ),
               //   ),
               // ),
-              const Text(
-                'Working Experience',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+
+              const SizedBox(height: 30.0),
+
+              InkWell(
+
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ContactScreen()));
+                },
+                child: CustomListTile(
+                  "Contacts",
+                  Icons.group_outlined,
+                  Icons.keyboard_arrow_right_outlined,
+                ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Job Title',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          profile_data == null ?
-                          Text(
-                            '',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          )
-                          :
-                          Text(
-                            profile_data!['last_job_title'].toString(),
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Institution',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          profile_data == null ?
-                          Text(
-                            '',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          )
-                          :
-                          Text(
-                            profile_data!['institute_name'].toString(),
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Supervisor',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          profile_data == null ?
-                          Text(
-                            '',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          )
-                          :
-                          Text(
-                            profile_data!['supervisor_name'].toString(),
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Supervisor Contact',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          profile_data == null ?
-                          Text(
-                            '',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          )
-                          :
-                          Text(
-                            profile_data!['supervisor_contact'].toString(),
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Start Date',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          profile_data == null ?
-                          Text(
-                            '',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          )
-                          :
-                          Text(
-                            profile_data!['starting_date'].toString(),
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'End Date',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          profile_data == null ?
-                          Text(
-                            '',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          )
-                          :
-                          Text(
-                            profile_data!['end_date'].toString(),
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis),
-                          ),
-                        ],
-                      ),
+
+              InkWell(
+
+                onTap: () {
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AboutScreen()));
+                },
+                child: CustomListTile(
+                  "About",
+                  Icons.history,
+                  Icons.keyboard_arrow_right_outlined,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => TermsandPolicyScreen()));
+                },
+                child: CustomListTile(
+                  "Terms and Policy",
+                  Icons.notifications_outlined,
+                  Icons.keyboard_arrow_right_outlined,
+                ),
+              ),
+              InkWell(
+
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FeedbackScreen()));
+                },
+                child: CustomListTile(
+                  "Feedback",
+                  Icons.feedback_outlined,
+                  Icons.keyboard_arrow_right_outlined,
+                ),
+              ),
+              InkWell(
+
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ComplainScreen()));
+                },
+                child: CustomListTile(
+                  "Complains",
+                  Icons.add_task,
+                  Icons.keyboard_arrow_right_outlined,
+                ),
+              ),
+              InkWell(
+
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HelpScreen()));
+                },
+                child: CustomListTile(
+                  "Help",
+                  Icons.help_center_outlined,
+                  Icons.keyboard_arrow_right_outlined,
+                ),
+              ),
+
+              InkWell(
+
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DeveloperScreen()));
+                },
+                child: CustomListTile(
+                  "Developer",
+                  Icons.developer_board,
+                  Icons.keyboard_arrow_right_outlined,
+                ),
+              ),
+              // const Text(
+              //   'Proffesional Qualification',
+              //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Container(
+              //     padding: const EdgeInsets.all(20),
+              //     decoration: BoxDecoration(
+              //       color: Colors.white,
+              //       borderRadius: BorderRadius.circular(30),
+              //     ),
+              //     child: Column(
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: [
+              //         Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //           children: [
+              //             Text(
+              //               'O-Level Index No',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //             SizedBox(
+              //               width: 10,
+              //             ),
+              //             profile_data == null ?
+              //             Text(
+              //               '',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             )
+              //             :
+              //             Text(
+              //               profile_data!['o_level_index'].toString(),
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //           ],
+              //         ),
+              //         SizedBox(
+              //           height: 15,
+              //         ),
+              //         Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //           children: [
+              //             Text(
+              //               'Education',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //             SizedBox(
+              //               width: 10,
+              //             ),
+              //             profile_data == null ?
+              //             Text(
+              //               '',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             )
+              //             :
+              //             Text(
+              //               profile_data!['education_level'].toString(),
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //           ],
+              //         ),
+              //         SizedBox(
+              //           height: 15,
+              //         ),
+              //         Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //           children: [
+              //             Text(
+              //               'Program',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //             SizedBox(
+              //               width: 10,
+              //             ),
+              //             profile_data == null ?
+              //             Text(
+              //               '',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             )
+              //             :
+              //             Text(
+              //               profile_data!['program'].toString(),
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //           ],
+              //         ),
+              //         SizedBox(height: 15),
+              //         Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //           children: [
+              //             Text(
+              //               'Country',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //             SizedBox(
+              //               width: 10,
+              //             ),
+              //             profile_data == null ?
+              //             Text(
+              //               '',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             )
+              //             :
+              //             Text(
+              //               profile_data!['country'].toString(),
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //           ],
+              //         ),
+              //         SizedBox(height: 15),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // // const Text(
+              // //   'Language Preferences',
+              // //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              // // ),
+              // // Padding(
+              // //   padding: const EdgeInsets.all(8.0),
+              // //   child: Container(
+              // //     padding: const EdgeInsets.all(20),
+              // //     decoration: BoxDecoration(
+              // //       color: Colors.white,
+              // //       borderRadius: BorderRadius.circular(30),
+              // //     ),
+              // //     child: const Column(
+              // //       crossAxisAlignment: CrossAxisAlignment.start,
+              // //       children: [
+              // //         Row(
+              // //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // //           children: [
+              // //             Text(
+              // //               'Fullname',
+              // //               style: TextStyle(
+              // //                   fontSize: 16,
+              // //                   color: Colors.grey,
+              // //                   fontWeight: FontWeight.bold,
+              // //                   overflow: TextOverflow.ellipsis),
+              // //             ),
+              // //             SizedBox(
+              // //               width: 10,
+              // //             ),
+              // //             Text(
+              // //               'Firstname Lastname',
+              // //               style: TextStyle(
+              // //                   fontSize: 16,
+              // //                   color: Colors.grey,
+              // //                   fontWeight: FontWeight.bold,
+              // //                   overflow: TextOverflow.ellipsis),
+              // //             ),
+              // //           ],
+              // //         ),
+              // //         SizedBox(
+              // //           height: 15,
+              // //         ),
+              // //         Row(
+              // //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // //           children: [
+              // //             Text(
+              // //               'Email',
+              // //               style: TextStyle(
+              // //                   fontSize: 16,
+              // //                   color: Colors.grey,
+              // //                   fontWeight: FontWeight.bold,
+              // //                   overflow: TextOverflow.ellipsis),
+              // //             ),
+              // //             SizedBox(
+              // //               width: 10,
+              // //             ),
+              // //             Text(
+              // //               'email@example.com',
+              // //               style: TextStyle(
+              // //                   fontSize: 16,
+              // //                   color: Colors.grey,
+              // //                   fontWeight: FontWeight.bold,
+              // //                   overflow: TextOverflow.ellipsis),
+              // //             ),
+              // //           ],
+              // //         ),
+              // //         SizedBox(
+              // //           height: 15,
+              // //         ),
+              // //         Row(
+              // //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // //           children: [
+              // //             Text(
+              // //               'Gender',
+              // //               style: TextStyle(
+              // //                   fontSize: 16,
+              // //                   color: Colors.grey,
+              // //                   fontWeight: FontWeight.bold,
+              // //                   overflow: TextOverflow.ellipsis),
+              // //             ),
+              // //             SizedBox(
+              // //               width: 10,
+              // //             ),
+              // //             Text(
+              // //               'Male',
+              // //               style: TextStyle(
+              // //                   fontSize: 16,
+              // //                   color: Colors.grey,
+              // //                   fontWeight: FontWeight.bold,
+              // //                   overflow: TextOverflow.ellipsis),
+              // //             ),
+              // //           ],
+              // //         ),
+              // //         SizedBox(height: 15),
+              // //         Row(
+              // //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // //           children: [
+              // //             Text(
+              // //               'Phone Nmuber',
+              // //               style: TextStyle(
+              // //                   fontSize: 16,
+              // //                   color: Colors.grey,
+              // //                   fontWeight: FontWeight.bold,
+              // //                   overflow: TextOverflow.ellipsis),
+              // //             ),
+              // //             SizedBox(
+              // //               width: 10,
+              // //             ),
+              // //             Text(
+              // //               '+255786985783',
+              // //               style: TextStyle(
+              // //                   fontSize: 16,
+              // //                   color: Colors.grey,
+              // //                   fontWeight: FontWeight.bold,
+              // //                   overflow: TextOverflow.ellipsis),
+              // //             ),
+              // //           ],
+              // //         ),
+              // //         SizedBox(height: 15),
+              // //       ],
+              // //     ),
+              // //   ),
+              // // ),
+              // const Text(
+              //   'Working Experience',
+              //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Container(
+              //     padding: const EdgeInsets.all(20),
+              //     decoration: BoxDecoration(
+              //       color: Colors.white,
+              //       borderRadius: BorderRadius.circular(30),
+              //     ),
+              //     child: Column(
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: [
+              //         Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //           children: [
+              //             Text(
+              //               'Job Title',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //             SizedBox(
+              //               width: 10,
+              //             ),
+              //             profile_data == null ?
+              //             Text(
+              //               '',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             )
+              //             :
+              //             Text(
+              //               profile_data!['last_job_title'].toString(),
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //           ],
+              //         ),
+              //         SizedBox(
+              //           height: 15,
+              //         ),
+              //         Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //           children: [
+              //             Text(
+              //               'Institution',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //             SizedBox(
+              //               width: 10,
+              //             ),
+              //             profile_data == null ?
+              //             Text(
+              //               '',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             )
+              //             :
+              //             Text(
+              //               profile_data!['institute_name'].toString(),
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //           ],
+              //         ),
+              //         SizedBox(
+              //           height: 15,
+              //         ),
+              //         Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //           children: [
+              //             Text(
+              //               'Supervisor',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //             SizedBox(
+              //               width: 10,
+              //             ),
+              //             profile_data == null ?
+              //             Text(
+              //               '',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             )
+              //             :
+              //             Text(
+              //               profile_data!['supervisor_name'].toString(),
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //           ],
+              //         ),
+              //         SizedBox(height: 15),
+              //         Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //           children: [
+              //             Text(
+              //               'Supervisor Contact',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //             SizedBox(
+              //               width: 10,
+              //             ),
+              //             profile_data == null ?
+              //             Text(
+              //               '',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             )
+              //             :
+              //             Text(
+              //               profile_data!['supervisor_contact'].toString(),
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //           ],
+              //         ),
+              //         SizedBox(height: 15),
+              //         Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //           children: [
+              //             Text(
+              //               'Start Date',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //             SizedBox(
+              //               width: 10,
+              //             ),
+              //             profile_data == null ?
+              //             Text(
+              //               '',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             )
+              //             :
+              //             Text(
+              //               profile_data!['starting_date'].toString(),
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //           ],
+              //         ),
+              //         SizedBox(height: 15),
+              //         Row(
+              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //           children: [
+              //             Text(
+              //               'End Date',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //             SizedBox(
+              //               width: 10,
+              //             ),
+              //             profile_data == null ?
+              //             Text(
+              //               '',
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             )
+              //             :
+              //             Text(
+              //               profile_data!['end_date'].toString(),
+              //               style: TextStyle(
+              //                   fontSize: 16,
+              //                   color: Colors.grey,
+              //                   fontWeight: FontWeight.bold,
+              //                   overflow: TextOverflow.ellipsis),
+              //             ),
+              //           ],
+              //         ),
                       SizedBox(height: 15),
                     ],
                   ),
                 ),
               )
-            ],
-          ),
-        ),
-      ),
+            // ],
+          // ),
+        // ),
+      // );
     );
   }
 }
@@ -892,4 +995,41 @@ class Profile_Item {
       this.gender,
       this.phone,
       this.cv);
+}
+
+class CustomListTile extends StatelessWidget {
+  String title;
+  IconData icon;
+  IconData traling;
+
+  CustomListTile(this.title, this.icon, this.traling, {Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(6.0),
+      child: ListTile(
+        tileColor: Colors.grey.shade50,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 5.0),
+          child: (Icon(
+            icon,
+            size: 25,
+          )),
+        ),
+        title: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        trailing: Icon(
+          traling,
+          size: 22,
+        ),
+      ),
+    );
+  }
 }

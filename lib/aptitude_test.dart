@@ -370,8 +370,8 @@ class _AptitudeTestScreenState extends State<AptitudeTestScreen> {
     List<step.Step> widgets = [
       step.InstructionStep(
         title: widget.company,
-        text: 'Unakaribia kuanza majaribio kwa vigezo vya nafasi ya kazi',
-        buttonText: 'Endelea!',
+        text: 'You are about to start the quiz',
+        buttonText: 'Start!',
       )
     ];
 

@@ -58,8 +58,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
       for (var f in aptitudeResultItensJson) {
         AptituteResult_Items requestlistItems = AptituteResult_Items(
-          f["job"].toString(),
-          f["company"].toString(),
+          f["test"].toString(),
+          f["description"].toString(),
           f["percent"].toString(),
           f["status"].toString(),
           
@@ -136,7 +136,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(4.0),
                                     child: Text(
-                                      'You have pass the aptitude test, stay tune for next step ',
+                                      'Congratulation! You have pass quiz',
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -156,7 +156,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(4.0),
                                     child: Text(
-                                      'Sorry! you have failed the aptitude test, please try again later',
+                                      'Sorry! you have failed the Quiz',
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),

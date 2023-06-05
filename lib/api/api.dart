@@ -10,7 +10,7 @@ import 'package:quiz_app/utils/snackbar.dart';
 class CallApi {
 
   // static const String url = 'http://157.230.82.95:8001/';
-  static const String url = 'http://192.168.100.32:7000/';
+  static const String url = 'http://46.101.244.29:8000/';
 
   static const String media_url = 'http://68.183.5.97:5000/media/v1/';
   static const String flask_microservice_url = 'http://68.183.5.97:3000/';

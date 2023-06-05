@@ -255,7 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     minRadius: 40.0,
                     child: CircleAvatar(
                       radius: 40.0,
-                      backgroundImage: AssetImage("assets/userx.jpg"),
+                      backgroundImage: AssetImage("assets/dev.png"),
                     ),
                   ),
                   const SizedBox(
@@ -324,7 +324,7 @@ class _HomeScreenState extends State<HomeScreen> {
               leading: const Icon(
                 Icons.notifications_outlined,
               ),
-              title: const Text('Register to Job Alert'),
+              title: const Text('Notification'),
               onTap: () {
                 Navigator.pop(context);
               },
